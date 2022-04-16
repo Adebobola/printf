@@ -29,4 +29,3 @@ void print_per(va_list a)
 {
     printf("%%");
 }
-  
