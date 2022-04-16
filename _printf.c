@@ -3,7 +3,7 @@
 #include <stdarg.h>
 
 /**
-
+ *_printf - produces output according to a format
  */
 int _printf(const char *format, ...)
 {
