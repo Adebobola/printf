@@ -4,13 +4,12 @@
 
 int _printf(const char *format, ...)
 {
-	va_list start;
-
-	va_start(start, format);
 	int f = 0;
 	int l = 0;
 	char *t;
+	va_list start;
 
+	va_start(start, format);
 	while (*format != '\0')
 	{
 		if (*format == '%')
