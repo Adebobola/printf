@@ -37,10 +37,6 @@ int _printf(const char *format, ...)
 				}
 				format++;
 			}
-			else if (*format == '%')
-			{
-				_putchar('%');
-			}
 		}
 		_putchar(*format);
 		format++;
