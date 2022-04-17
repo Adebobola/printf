@@ -32,7 +32,6 @@ int _printf(const char *format, ...)
 			return (-1);
 		}
 
-		char_count += get_printing_func(format[i + 1], &ap);
 		i++;
 	}
 	return (char_count);
