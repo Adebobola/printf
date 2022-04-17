@@ -1,4 +1,6 @@
 #include "main.h"
+#Include <stdio.h>
+#include <stddef.h>
 
 /**
  * _printf - clone of the function printf in stdio.h
