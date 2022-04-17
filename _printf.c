@@ -47,11 +47,6 @@ int _printf(const char *format, ...)
                                         char_count++;
                                 }
                         }
-                        else if (format[i] == '%')
-                        {
-                                putchar('%');
-                                char_count++;
-                        }
                 }
 		if (format[i + 1] == '\0')
 		{
