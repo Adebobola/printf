@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "main.h"
 /**
  * _printf - clone of the function printf in stdio.h
  * @format: the string to be printed along with format specifiers preceded by %
