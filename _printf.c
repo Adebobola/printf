@@ -16,41 +16,43 @@ int _printf(const char *format, ...)
 	int i; /* Used to loop through all characters in format */
 	int l = 0;
 	char *t;
-	char *memory;
 
 	va_start(ap, format);
-	memory = malloc(sizeof(char) * 200000);
+
 	for (i = 0; format[i] != '\0'; i++, char_count++)
 	{
-		
 		if (format[i] == '%')
                 {
                         i++;
                         char_count++;
                         if (format[i] == 'c')
                         {
-                                memory[char_count] = va_arg(ap, int);
+                                putchar(va_arg(ap, int));
+                                continue;
                         }
                         else if (format[i] == 's')
                         {
                                 t = va_arg(ap, char*);
                                 while (t[l] != '\0')
                                 {
-                                        memory[char_count] = t[l];
+                                        putchar(t[l]);
                                         l++;
                                         char_count++;
                                 }
                                 l = 0;
+                                continue;
                         }
                         else if (format[i] == '%')
                         {
-                                memory [char_count] = '%';
+                                putchar('%');
+                                continue;
+                        }
+                        else
+                        {
+                                continue;
                         }
                 }
-                memory[char_count] = format[i];
+                putchar(format[i]);
 	}
-	write(1, memory, char_count);
-	free(memory);
-	va_end(ap);
 	return (char_count);
 }
