@@ -1,6 +1,7 @@
-#include "main.h"
 #include <stdio.h>
-#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <unistd.h>
 /**
  * _printf - clone of the function printf in stdio.h
  * @format: the string to be printed along with format specifiers preceded by %
@@ -9,54 +10,56 @@
  */
 int _printf(const char *format, ...)
 {
-	int char_count = 0; /* Total number of chars printed to stdout */
 	va_list ap; /* Contains the list of arguments passed after format */
 	int i; /* Used to loop through all characters in format */
 	int l = 0;
+	int k = 0;
+	int y;
 	char *t;
+	char *memory;
+
 	va_start(ap, format);
+	memory = malloc(sizeof(char) * 1500);
 
 	if (format == NULL)
-		return (-1);
 		return (0);
 
-	for (i = 0; format[i] != 0; i++)
+	for (i = 0; format[i] != 0; i++, k++)
 	{
 		if (format[i] != '%')
 		{
-			_putchar(format[i]);
-			char_count++;
+			memory[k] = format[i];
 			continue;
 		}
 		if (format[i] == '%')
                 {
                         i++;
+                        k++;
                         if (format[i] == 'c')
                         {
-                                _putchar(va_arg(ap, int));
-                                char_count++;
+                                memory[k] = va_arg(ap, int);
+                                continue;
                         }
                         else if (format[i] == 's')
                         {
                                 t = va_arg(ap, char*);
                                 while (t[l] != '\0')
                                 {
-                                        _putchar(t[l]);
+                                        memory[k] = t[l];
                                         l++;
-                                        char_count++;
+                                        k++;
                                 }
-				l = 0;
+                                l = 0;
+                                continue;
                         }
-			else if (format[i] == '%')
+                        else if (format[i] == '%')
                         {
-                                _putchar('%');
-                                char_count++;
+                                memory[k] = '%';
                         }
                 }
-		if (format[i + 1] == '\0')
-		{
-			break;
-		}
 	}
-	return (char_count);
+	write(1, memory, k);
+	va_end(ap);
+	free(memory);
+	return (k);
 }
