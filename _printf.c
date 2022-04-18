@@ -1,63 +1,49 @@
 #include "main.h"
-#include <stdio.h>
-#include <stddef.h>
-
 /**
- * _printf - clone of the function printf in stdio.h
- * @format: the string to be printed along with format specifiers preceded by %
+ * _printf - replicate prinft
  *
- * Return: the number of characters printed
+ * @format: format printf
+ * Return: Always 0
  */
 int _printf(const char *format, ...)
 {
-	int char_count = 0; /* Total number of chars printed to stdout */
-	va_list ap; /* Contains the list of arguments passed after format */
-	int i; /* Used to loop through all characters in format */
-	int l = 0;
-	char *t;
 
-	va_start(ap, format);
+	int (*printer)(va_list);
+	int length = 0;
+	va_list content;
 
-	if (format == NULL)
-		return (0);
+	va_start(content, format);
 
-	for (i = 0; format[i] != 0; i++)
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+
+	for (; *format; format++)
 	{
-		if (format[i] != '%')
+		if (*format == '%')
 		{
-			_putchar(format[i]);
-			char_count++;
-			continue;
+			format++;
+
+			printer = get_print(*format);
+
+			if (printer)
+			{
+				length += printer(content);
+			}
+			else
+			{
+				length += _putchar('%');
+				length += _putchar(*format);
+			}
 		}
-		if (format[i] == '%')
-                {
-                        i++;
-                        if (format[i] == 'c')
-                        {
-                                _putchar(va_arg(ap, int));
-                                char_count++;
-                        }
-                        else if (format[i] == 's')
-                        {
-                                t = va_arg(ap, char*);
-                                while (t[l] != '\0')
-                                {
-                                        _putchar(t[l]);
-                                        l++;
-                                        char_count++;
-                                }
-				l = 0;
-                        }
-			else if (format[i] == '%')
-                        {
-                                _putchar('%');
-                                char_count++;
-                        }
-                }
-		if (format[i + 1] == '\0')
+		else
 		{
-			break;
+			length += _putchar(*format);
 		}
 	}
-	return (char_count);
+	va_end(content);
+
+	return (length);
 }
