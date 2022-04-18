@@ -11,55 +11,46 @@
  */
 int _printf(const char *format, ...)
 {
+	int char_count = 0; /* Total number of chars printed to stdout */
 	va_list ap; /* Contains the list of arguments passed after format */
 	int i; /* Used to loop through all characters in format */
 	int l = 0;
-	int k = 0;
 	char *t;
 	char *memory;
 
 	va_start(ap, format);
-	memory = malloc(sizeof(char) * 1500);
-
-	if (format == NULL)
-		return (0);
-
-	for (i = 0; format[i] != 0; i++, k++)
+	memory = malloc(sizeof(char) * 200000);
+	for (i = 0; format[i] != '\0'; i++, char_count++)
 	{
-		if (format[i] != '%')
-		{
-			memory[k] = format[i];
-			continue;
-		}
+		
 		if (format[i] == '%')
                 {
                         i++;
-                        k++;
+                        char_count++;
                         if (format[i] == 'c')
                         {
-                                memory[k] = va_arg(ap, int);
-                                continue;
+                                memory[char_count] = va_arg(ap, int);
                         }
                         else if (format[i] == 's')
                         {
                                 t = va_arg(ap, char*);
                                 while (t[l] != '\0')
                                 {
-                                        memory[k] = t[l];
+                                        memory[char_count] = t[l];
                                         l++;
-                                        k++;
+                                        char_count++;
                                 }
                                 l = 0;
-                                continue;
                         }
                         else if (format[i] == '%')
                         {
-                                memory[k] = '%';
+                                memory [char_count] = '%';
                         }
                 }
+                memory[char_count] = format[i];
 	}
-	write(1, memory, k);
-	va_end(ap);
+	write(1, memory, char_count);
 	free(memory);
-	return (k);
+	va_end(ap);
+	return (char_count);
 }
