@@ -14,7 +14,6 @@ int _printf(const char *format, ...)
 	int i; /* Used to loop through all characters in format */
 	int l = 0;
 	int k = 0;
-	int y;
 	char *t;
 	char *memory;
 
