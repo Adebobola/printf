@@ -1,45 +1,32 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdarg.h>
-#include <stdlib.h>
-#include <stdbool.h>
+
+int _putchar(char c);
+int print_int(va_list arg);
+int print_unsigned(va_list arg);
+int _printf(const char *format, ...);
+int print_char(va_list arg);
+int print_str(va_list arg);
+int print_percent(void);
+void print_binary(unsigned int n, unsigned int *printed);
+int print_unsignedToBinary(va_list arg);
+int print_oct(va_list arg);
+int print_unsignedIntToHex(unsigned int num, char _case);
+int print_hex_base(va_list arg, char _case);
+int print_hex(va_list arg);
+int print_HEX(va_list arg);
+int print_STR(va_list arg);
 
 /**
- * struct printHandler - struct for agrupate
- * %d, %c, etc... formatters
- * @c: character
- * @f: character func
- *
+ * struct identifierStruct - structure definition of a printTypeStruct
+ * @indentifier: type
+ * @printer: function to print
  */
-typedef struct printHandler
+typedef struct identifierStruct
 {
-	char c;
-	int (*f)(va_list);
-} ph;
-
-int _printf(const char *format, ...);
-int (*get_print(char c))(va_list);
-int _putchar(char c);
-int _puts(char *str);
-char *string_to_base(unsigned long int num, int base, bool uppercase);
-/** prints text*/
-int print_char(va_list);
-int print_string(va_list);
-int print_reverse_string(va_list);
-/** print mememory address */
-int print_address(va_list);
-/** prints nums*/
-int print_int(va_list);
-int print_unsigned(va_list);
-/** prints basics*/
-int print_hexa(va_list);
-int print_octal(va_list);
-int print_binary(va_list);
-int print_percent(va_list);
-int print_hexa_in_uppercase(va_list);
-/** utilities */
-int count_digits(int i);
-void print_number(int n);
-void print_rev_recursion(char *s);
+char *indentifier;
+int (*printer)(va_list);
+} identifierStruct;
 
 #endif
