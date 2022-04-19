@@ -14,12 +14,12 @@ void print_binary(unsigned int c)
         {
                 l++;
                 l += print_unsignedToBinary(c / 2);
-                putchar((c%2) + '0');
+                _putchar((c%2) + '0');
         }
         else
         {
                 l++;
-                putchar(c + '0');
+                _putchar(c + '0');
         }
 	return(l);
 }
