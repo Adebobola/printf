@@ -30,7 +30,7 @@ int printIdentifiers(char next, va_list arg)
 
 	for (functsIndex = 0; functs[functsIndex].indentifier != NULL; functsIndex++)
 	{
-		if (functs[functsIndex].indentifier[functsIndex] == next)
+		if (functs[functsIndex].indentifier[0] == next)
 			return (functs[functsIndex].printer(arg));
 	}
 	return (0);
@@ -44,6 +44,7 @@ int printIdentifiers(char next, va_list arg)
  * (excluding the null byte used to end output to strings)
  * return -1 for incomplete identifier error
  */
+
 int _printf(const char *format, ...)
 {
 	unsigned int i;
