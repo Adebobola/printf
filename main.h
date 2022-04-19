@@ -12,7 +12,7 @@ int _printf(const char *format, ...);
 int print_char(va_list arg);
 int print_str(va_list arg);
 int print_percent(void);
-int print_binary(unsigned int c);
+void print_binary(unsigned int n, unsigned int *printed);
 int print_unsignedToBinary(va_list arg);
 int print_oct(va_list arg);
 int print_unsignedIntToHex(unsigned int num, char _case);
