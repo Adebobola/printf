@@ -7,7 +7,7 @@
  * @printed: hold the number of characters printed
  */
 
-unsined int print_binary(unsigned int c)
+unsigned int print_binary(unsigned int c)
 {
 	unsigned int l = 0;
         if (c > 1)
