@@ -9,7 +9,7 @@
 
 int print_binary(unsigned int c)
 {
-	unsigned int l = 0;
+	int l = 0;
         if (c > 1)
         {
                 l++;
