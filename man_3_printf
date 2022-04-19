@@ -1,4 +1,4 @@
-.TH man 3 "16 April 2022" "HOLBERTON SCHOOL" "_PRINTF"
+.TH _PRINTF "1" "18 April 2022" "0x11" "_printf man page"
 .SH NAME
 _printf - print data and format
 .SH SYNOPSIS
@@ -31,4 +31,3 @@ In the Example print the value of text with %s give the format of text.
 .SH SEE ALSO
 .I printf (3)
 .SH AUTHOR
-Oni progress and Adebobola Adereti
