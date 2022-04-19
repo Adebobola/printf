@@ -7,21 +7,12 @@
  * @printed: hold the number of characters printed
  */
 
-int print_binary(unsigned int c)
+void print_binary(unsigned int n, unsigned int *printed)
 {
-	int l = 0;
-	unsigned int m = c;
-        if (c > 1)
-        {
-                l++;
-		m = m / 2;
-                l += print_unsignedToBinary(m);
-                _putchar((c%2) + '0');
-        }
-        else
-        {
-                l++;
-                _putchar(c + '0');
-        }
-	return(l);
+	if  (n > 0)
+	{
+		*printed += 1;
+		print_binary(n >> 1, printed);
+	}
+	_putchar((n & 1) + '0');
 }
